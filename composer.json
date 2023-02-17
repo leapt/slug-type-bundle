@@ -1,0 +1,46 @@
+{
+    "name": "leapt/slug-type-bundle",
+    "type": "symfony-bundle",
+    "description": "Leapt SlugType bundle makes a form field dynamically generate the slug of another text field.",
+    "keywords": ["symfony-ux"],
+    "homepage": "https://github.com/leapt/slug-type-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jonathan Scheiber",
+            "homepage": "https://github.com/jmsche"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "symfony/form": "^6.2",
+        "symfony/http-kernel": "^6.2"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.14.4",
+        "phpstan/phpstan": "^1.9.17",
+        "phpstan/phpstan-deprecation-rules": "^1.1.1",
+        "phpunit/phpunit": "^10.0.7"
+    },
+    "scripts": {
+        "ci": [
+            "@cs:dry",
+            "@phpstan",
+            "@phpunit"
+        ],
+        "cs:dry": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --diff --dry-run --no-interaction --ansi",
+        "cs:fix": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --ansi",
+        "phpstan": "vendor/bin/phpstan analyse --ansi",
+        "phpunit": "vendor/bin/phpunit --coverage-html=var/html-coverage"
+    },
+    "autoload": {
+        "psr-4": {
+            "Leapt\\SlugTypeBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Leapt\\SlugTypeBundle\\Tests\\": "tests/"
+        }
+    }
+}
