@@ -20,7 +20,10 @@
         "friendsofphp/php-cs-fixer": "^3.14.4",
         "phpstan/phpstan": "^1.9.17",
         "phpstan/phpstan-deprecation-rules": "^1.1.1",
-        "phpunit/phpunit": "^10.0.7"
+        "phpunit/phpunit": "^10.0.7",
+        "symfony/framework-bundle": "^6.2",
+        "symfony/translation": "^6.2",
+        "symfony/twig-bundle": "^6.2"
     },
     "scripts": {
         "ci": [
@@ -31,7 +34,7 @@
         "cs:dry": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --diff --dry-run --no-interaction --ansi",
         "cs:fix": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --ansi",
         "phpstan": "vendor/bin/phpstan analyse --ansi",
-        "phpunit": "vendor/bin/phpunit --coverage-html=var/html-coverage"
+        "phpunit": "vendor/bin/phpunit --coverage-html=var/html-coverage --colors=auto"
     },
     "autoload": {
         "psr-4": {

@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Leapt\SlugTypeBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-class LeaptSlugTypeBundle extends Bundle
+class LeaptSlugTypeBundle extends AbstractBundle
 {
-    public function getPath(): string
-    {
-        return \dirname(__DIR__);
-    }
 }
