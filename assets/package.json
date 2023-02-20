@@ -6,7 +6,7 @@
     "main": "dist/controller.js",
     "symfony": {
         "controllers": {
-            "slug-type": {
+            "leapt-slug": {
                 "main": "dist/controller.js",
                 "webpackMode": "eager",
                 "fetch": "eager",
