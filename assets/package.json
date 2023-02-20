@@ -18,8 +18,7 @@
         "build": "babel src --extensions .ts -d dist"
     },
     "peerDependencies": {
-        "@hotwired/stimulus": "^3.0.0",
-        "slugify": "^1.6.5"
+        "@hotwired/stimulus": "^3.0.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.20.7",
