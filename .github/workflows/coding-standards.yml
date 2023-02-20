@@ -1,0 +1,36 @@
+name: Coding standards
+
+on:
+  pull_request:
+    branches: ['1.x']
+  push:
+    branches: ['1.x']
+
+jobs:
+  php-cs-fixer:
+    name: PHP CS Fixer (PHP ${{ matrix.php-version }})
+    runs-on: ubuntu-22.04
+
+    strategy:
+      matrix:
+        php-version:
+          - '8.2'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          coverage: none
+          php-version: ${{ matrix.php-version }}
+          tools: cs2pr
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v2
+
+      - name: Run PHP CS Fixer
+        run: 'vendor/bin/php-cs-fixer fix --dry-run --format=checkstyle | cs2pr'
+        env:
+          PHP_CS_FIXER_IGNORE_ENV: 1
