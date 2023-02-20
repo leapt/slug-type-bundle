@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 use Twig\Environment;
 
 final class SlugTypeTest extends KernelTestCase
@@ -58,5 +59,15 @@ final class SlugTypeTest extends KernelTestCase
 ',
             str_replace(' >', '>', $rendered),
         );
+    }
+
+    public function testMissingTargetThrowsException(): void
+    {
+        self::expectException(MissingOptionsException::class);
+        self::expectExceptionMessage('The required option "target" is missing.');
+        $this->formFactory->createBuilder()
+            ->add('name', TextType::class)
+            ->add('slug', SlugType::class)
+            ->getForm();
     }
 }
