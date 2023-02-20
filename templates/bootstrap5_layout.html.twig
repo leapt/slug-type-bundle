@@ -7,7 +7,7 @@
         data-{{ base_stimulus_name }}-alert-message-value="{{ 'alert_message'|trans({}, 'LeaptSlugType') }}"
     >
         {{ block('form_widget') }}
-        <button class="btn btn-outline-secondary" type="button" data-leapt-slug-target="button">
+        <button class="btn btn-outline-secondary" type="button" data-{{ base_stimulus_name }}-target="button">
             &#128274;
         </button>
     </div>
