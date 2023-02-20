@@ -1,0 +1,14 @@
+{% block leapt_slug_widget -%}
+    {% set base_stimulus_name = 'leapt--slug-type-bundle--slug' %}
+    <div
+        class="input-group"
+        data-controller="{{ base_stimulus_name }}"
+        data-{{ base_stimulus_name }}-target-value="{{ form.parent.children[target].vars.id }}"
+        data-{{ base_stimulus_name }}-alert-message-value="{{ 'alert_message'|trans({}, 'LeaptSlugType') }}"
+    >
+        {{ block('form_widget') }}
+        <button class="btn btn-outline-secondary" type="button" data-leapt-slug-target="button">
+            &#128274;
+        </button>
+    </div>
+{%- endblock %}
