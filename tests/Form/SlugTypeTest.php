@@ -61,6 +61,21 @@ final class SlugTypeTest extends KernelTestCase
         );
     }
 
+    public function testRenderFormWithCustomButtonClass(): void
+    {
+        $form = $this->formFactory->createBuilder()
+            ->add('name', TextType::class)
+            ->add('slug', SlugType::class, ['target' => 'name', 'button_class' => 'btn-primary'])
+            ->getForm();
+
+        $rendered = $this->twig->render('form.html.twig', ['form' => $form->createView()]);
+
+        self::assertStringContainsString(
+            'class="btn btn-primary"',
+            $rendered,
+        );
+    }
+
     public function testMissingTargetThrowsException(): void
     {
         self::expectException(MissingOptionsException::class);

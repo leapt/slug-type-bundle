@@ -22,12 +22,15 @@ final class SlugType extends AbstractType
         $resolver
             ->setRequired(['target'])
             ->setAllowedTypes('target', ['string'])
+            ->setDefault('button_class', null)
+            ->setAllowedTypes('button_class', ['null', 'string'])
         ;
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['target'] = $options['target'];
+        $view->vars['button_class'] = $options['button_class'];
     }
 
     public function getParent(): string
