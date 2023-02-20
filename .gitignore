@@ -1,3 +1,5 @@
+/assets/node_modules
+/assets/yarn.lock
 /var
 /vendor
 .php_cs.cache

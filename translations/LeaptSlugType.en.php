@@ -3,10 +3,5 @@
 declare(strict_types=1);
 
 return [
-    'modal' => [
-        'title'   => 'Warning',
-        'message' => 'If you modify the slug, you may break links on other pages.',
-        'cancel'  => 'Cancel',
-        'ok'      => 'Confirm',
-    ],
+    'alert_message' => 'If you change the slug, you can break links on other pages.',
 ];
