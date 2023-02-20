@@ -1,0 +1,48 @@
+name: Continuous integration
+
+on:
+  pull_request:
+    branches: ['1.x']
+  push:
+    branches: ['1.x']
+
+jobs:
+  phpunit:
+    name: PHPUnit (PHP ${{ matrix.php-version }} - Symfony ${{ matrix.symfony-version }})
+    runs-on: ubuntu-22.04
+    env:
+      SYMFONY_REQUIRE: ${{ matrix.symfony-version }}
+
+    strategy:
+      matrix:
+        php-version:
+          - '8.2'
+        symfony-version:
+          - '6.2.*'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Install PHP with pcov
+        uses: shivammathur/setup-php@v2
+        with:
+          coverage: pcov
+          php-version: ${{ matrix.php-version }}
+
+      - name: Install Symfony Flex
+        run: |
+          composer config --global --no-plugins allow-plugins.symfony/flex true
+          composer global require --no-progress --no-scripts --no-plugins symfony/flex
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v2
+
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --coverage-clover=coverage.xml
+
+      - name: Upload to Codecov
+        uses: codecov/codecov-action@v3
+        if: matrix.php-version == '8.2' && matrix.symfony-version == '6.2.*'
