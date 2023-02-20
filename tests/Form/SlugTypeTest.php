@@ -48,36 +48,12 @@ final class SlugTypeTest extends KernelTestCase
         class="input-group"
         data-controller="leapt-slug"
         data-leapt-slug-target-value="form_name"
-        data-leapt-slug-modal-id-value="leapt-slug-modal-form_slug"
+        data-leapt-slug-alert-message-value="If you change the slug, you can break links on other pages."
    >
         <input type="text" id="form_slug" name="form[slug]" required="required" />
-        <button class="btn btn-outline-secondary" type="button">
-            <i class="fas fa-lock fa-fw"></i>
+        <button class="btn btn-outline-secondary" type="button" data-leapt-slug-target="button">
+            &#128274;
         </button>
-    </div>
-
-    <div class="modal fade" tabindex="-1" id="leapt-slug-modal-form_slug">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">slug_type.modal.title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>slug_type.modal.message</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fas fa-ban fa-fw"></i>
-                        slug_type.modal.cancel
-                    </button>
-                    <button type="button" class="btn btn-primary" data-accept="modal">
-                        <i class="fas fa-check fa-fw"></i>
-                        slug_type.modal.ok
-                    </button>
-                </div>
-            </div>
-        </div>
     </div></div></div></form>
 ',
             str_replace(' >', '>', $rendered),
