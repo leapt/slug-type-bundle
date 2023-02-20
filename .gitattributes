@@ -6,6 +6,7 @@
 /assets/babel.config.js export-ignore
 /assets/tsconfig.json export-ignore
 /tests export-ignore
+demo.gif export-ignore
 phpstan.neon export-ignore
 phpstan-baseline.neon export-ignore
 phpunit.xml export-ignore
