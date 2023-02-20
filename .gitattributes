@@ -4,7 +4,6 @@
 /.github export-ignore
 /assets/src export-ignore
 /assets/babel.config.js export-ignore
-/assets/package.json export-ignore
 /assets/tsconfig.json export-ignore
 /tests export-ignore
 phpstan.neon export-ignore
