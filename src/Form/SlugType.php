@@ -24,6 +24,10 @@ final class SlugType extends AbstractType
             ->setAllowedTypes('target', ['string'])
             ->setDefault('button_class', null)
             ->setAllowedTypes('button_class', ['null', 'string'])
+            ->setDefault('locked_icon', '&#128274;')
+            ->setAllowedTypes('locked_icon', ['string'])
+            ->setDefault('unlocked_icon', '&#128275;')
+            ->setAllowedTypes('unlocked_icon', ['string'])
         ;
     }
 
@@ -31,6 +35,8 @@ final class SlugType extends AbstractType
     {
         $view->vars['target'] = $options['target'];
         $view->vars['button_class'] = $options['button_class'];
+        $view->vars['locked_icon'] = $options['locked_icon'];
+        $view->vars['unlocked_icon'] = $options['unlocked_icon'];
     }
 
     public function getParent(): string

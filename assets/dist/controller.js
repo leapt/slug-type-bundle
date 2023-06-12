@@ -150,7 +150,7 @@ var _default = /*#__PURE__*/function (_Controller) {
     key: "unlock",
     value: function unlock() {
       this.locked = false;
-      this.buttonTarget.innerHTML = '&#128275;';
+      this.buttonTarget.innerHTML = this.unlockedIconValue;
       this.field.removeAttribute('readonly');
     }
 
@@ -161,7 +161,7 @@ var _default = /*#__PURE__*/function (_Controller) {
     key: "lock",
     value: function lock() {
       this.locked = true;
-      this.buttonTarget.innerHTML = '&#128274;';
+      this.buttonTarget.innerHTML = this.lockedIconValue;
 
       // Locking it back changes the value either to default value, or recomputes it
       if ('' !== this.currentSlug) {
@@ -177,6 +177,8 @@ var _default = /*#__PURE__*/function (_Controller) {
 exports["default"] = _default;
 _defineProperty(_default, "values", {
   target: String,
-  alertMessage: String
+  alertMessage: String,
+  lockedIcon: String,
+  unlockedIcon: String
 });
 _defineProperty(_default, "targets", ['button']);

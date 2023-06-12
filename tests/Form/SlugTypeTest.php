@@ -50,6 +50,8 @@ final class SlugTypeTest extends KernelTestCase
         data-controller="leapt--slug-type-bundle--slug"
         data-leapt--slug-type-bundle--slug-target-value="form_name"
         data-leapt--slug-type-bundle--slug-alert-message-value="If you change the slug, you can break links on other pages."
+        data-leapt--slug-type-bundle--slug-locked-icon-value="&amp;&#x23;128274&#x3B;"
+        data-leapt--slug-type-bundle--slug-unlocked-icon-value="&amp;&#x23;128275&#x3B;"
    >
         <input type="text" id="form_slug" name="form[slug]" required="required" />
         <button class="btn btn-outline-secondary" type="button" data-leapt--slug-type-bundle--slug-target="button">
@@ -72,6 +74,25 @@ final class SlugTypeTest extends KernelTestCase
 
         self::assertStringContainsString(
             'class="btn btn-primary"',
+            $rendered,
+        );
+    }
+
+    public function testRenderFormWithCustomIcons(): void
+    {
+        $form = $this->formFactory->createBuilder()
+            ->add('name', TextType::class)
+            ->add('slug', SlugType::class, [
+                'target'        => 'name',
+                'locked_icon'   => '<i class="fas fa-fw fa-lock"></i>',
+                'unlocked_icon' => '<i class="fas fa-fw fa-lock-open"></i>',
+            ])
+            ->getForm();
+
+        $rendered = $this->twig->render('form.html.twig', ['form' => $form->createView()]);
+
+        self::assertStringContainsString(
+            'fa-lock-open',
             $rendered,
         );
     }
