@@ -13,6 +13,7 @@ use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\UX\StimulusBundle\StimulusBundle;
 
 final class LeaptSlugTypeTestingKernel extends Kernel
 {
@@ -22,6 +23,7 @@ final class LeaptSlugTypeTestingKernel extends Kernel
     {
         yield new FrameworkBundle();
         yield new TwigBundle();
+        yield new StimulusBundle();
         yield new LeaptSlugTypeBundle();
     }
 

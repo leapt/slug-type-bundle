@@ -47,11 +47,7 @@ final class SlugTypeTest extends KernelTestCase
         self::assertSame(
             '<form name="form" method="post"><div id="form"><div><label for="form_name" class="required">Name</label><input type="text" id="form_name" name="form[name]" required="required" /></div><div><label for="form_slug" class="required">Slug</label>    <div
         class="input-group"
-        data-controller="leapt--slug-type-bundle--slug"
-        data-leapt--slug-type-bundle--slug-target-value="form_name"
-        data-leapt--slug-type-bundle--slug-alert-message-value="If you change the slug, you can break links on other pages."
-        data-leapt--slug-type-bundle--slug-locked-icon-value="&amp;&#x23;128274&#x3B;"
-        data-leapt--slug-type-bundle--slug-unlocked-icon-value="&amp;&#x23;128275&#x3B;"
+        data-controller="leapt--slug-type-bundle--slug" data-leapt--slug-type-bundle--slug-target-value="form_name" data-leapt--slug-type-bundle--slug-alert-message-value="If&#x20;you&#x20;change&#x20;the&#x20;slug,&#x20;you&#x20;can&#x20;break&#x20;links&#x20;on&#x20;other&#x20;pages." data-leapt--slug-type-bundle--slug-locked-icon-value="&amp;&#x23;128274&#x3B;" data-leapt--slug-type-bundle--slug-unlocked-icon-value="&amp;&#x23;128275&#x3B;"
    >
         <input type="text" id="form_slug" name="form[slug]" required="required" />
         <button class="btn btn-outline-secondary" type="button" data-leapt--slug-type-bundle--slug-target="button">
