@@ -11,7 +11,7 @@
         {{ block('form_widget') }}
         <div class="input-group-append">
             <button class="btn {{ button_class|default('btn-outline-secondary') }}" type="button" data-{{ base_stimulus_name }}-target="button">
-                &#128274;
+                {{ locked_icon|raw }}
             </button>
         </div>
     </div>
