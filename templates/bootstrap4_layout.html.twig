@@ -2,11 +2,12 @@
     {% set base_stimulus_name = 'leapt--slug-type-bundle--slug' %}
     <div
         class="input-group"
-        data-controller="{{ base_stimulus_name }}"
-        data-{{ base_stimulus_name }}-target-value="{{ form.parent.children[target].vars.id }}"
-        data-{{ base_stimulus_name }}-alert-message-value="{{ 'alert_message'|trans({}, 'LeaptSlugType') }}"
-        data-{{ base_stimulus_name }}-locked-icon-value="{{ locked_icon|escape('html_attr') }}"
-        data-{{ base_stimulus_name }}-unlocked-icon-value="{{ unlocked_icon|escape('html_attr') }}"
+        {{ stimulus_controller('leapt/slug-type-bundle/slug', {
+            target: form.parent.children[target].vars.id,
+            alertMessage: 'alert_message'|trans({}, 'LeaptSlugType'),
+            lockedIcon: locked_icon,
+            unlockedIcon: unlocked_icon,
+        }) }}
     >
         {{ block('form_widget') }}
         <div class="input-group-append">

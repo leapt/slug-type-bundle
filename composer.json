@@ -15,6 +15,7 @@
         "php": "^8.2",
         "symfony/form": "^6.2",
         "symfony/http-kernel": "^6.2",
+        "symfony/stimulus-bundle": "^2.9",
         "symfony/translation": "^6.2"
     },
     "require-dev": {
