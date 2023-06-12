@@ -1,5 +1,4 @@
 {% block leapt_slug_widget -%}
-    {% set base_stimulus_name = 'leapt--slug-type-bundle--slug' %}
     <div
         class="input-group"
         {{ stimulus_controller('leapt/slug-type-bundle/slug', {
@@ -11,7 +10,7 @@
     >
         {{ block('form_widget') }}
         <div class="input-group-append">
-            <button class="btn {{ button_class|default('btn-outline-secondary') }}" type="button" data-{{ base_stimulus_name }}-target="button">
+            <button class="btn {{ button_class|default('btn-outline-secondary') }}" type="button" {{ stimulus_target('leapt/slug-type-bundle/slug', 'button') }}>
                 {{ locked_icon|raw }}
             </button>
         </div>
