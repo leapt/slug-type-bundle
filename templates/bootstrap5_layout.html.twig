@@ -5,6 +5,8 @@
         data-controller="{{ base_stimulus_name }}"
         data-{{ base_stimulus_name }}-target-value="{{ form.parent.children[target].vars.id }}"
         data-{{ base_stimulus_name }}-alert-message-value="{{ 'alert_message'|trans({}, 'LeaptSlugType') }}"
+        data-{{ base_stimulus_name }}-locked-icon-value="{{ locked_icon|escape('html_attr') }}"
+        data-{{ base_stimulus_name }}-unlocked-icon-value="{{ unlocked_icon|escape('html_attr') }}"
     >
         {{ block('form_widget') }}
         <button class="btn {{ button_class|default('btn-outline-secondary') }}" type="button" data-{{ base_stimulus_name }}-target="button">

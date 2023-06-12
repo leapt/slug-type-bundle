@@ -84,6 +84,17 @@ $builder->add('slug', SlugType::class, [
 ]);
 ```
 
+You can also customize the locked & unlocked icons. By default, it uses emojis, but if you use e.g. FontAwesome you can
+override it:
+
+```php
+$builder->add('slug', SlugType::class, [
+    'target' => 'name',
+    'locked_icon' => '<i class="fas fa-fw fa-lock"></i>',
+    'unlocked_icon' => '<i class="fas fa-fw fa-lock-open"></i>',
+]);
+```
+
 ## Contributing
 
 Feel free to contribute, like sending [pull requests](https://github.com/leapt/slug-type-bundle/pulls) to add

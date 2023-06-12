@@ -52,9 +52,13 @@ export default class extends Controller<HTMLDivElement> {
     static values = {
         target: String,
         alertMessage: String,
+        lockedIcon: String,
+        unlockedIcon: String,
     };
     declare readonly targetValue: string;
     declare readonly alertMessageValue: string;
+    declare readonly lockedIconValue: string;
+    declare readonly unlockedIconValue: string;
 
     static targets = ['button'];
     declare readonly buttonTarget: HTMLButtonElement;
@@ -123,7 +127,7 @@ export default class extends Controller<HTMLDivElement> {
      */
     unlock(): void {
         this.locked = false;
-        this.buttonTarget.innerHTML = '&#128275;'
+        this.buttonTarget.innerHTML = this.unlockedIconValue;
         this.field.removeAttribute('readonly');
     }
 
@@ -132,7 +136,7 @@ export default class extends Controller<HTMLDivElement> {
      */
     lock(): void {
         this.locked = true;
-        this.buttonTarget.innerHTML = '&#128274;'
+        this.buttonTarget.innerHTML = this.lockedIconValue;
 
         // Locking it back changes the value either to default value, or recomputes it
         if ('' !== this.currentSlug) {
