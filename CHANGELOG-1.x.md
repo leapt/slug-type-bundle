@@ -1,3 +1,8 @@
+1.2.0
+-----
+
+* Add importmap config for AssetMapper
+
 1.1.0
 -----
 

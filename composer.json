@@ -23,6 +23,7 @@
         "phpstan/phpstan": "^1.10.15",
         "phpstan/phpstan-deprecation-rules": "^1.1.3",
         "phpunit/phpunit": "^10.1.3",
+        "symfony/asset-mapper": "^6.3",
         "symfony/framework-bundle": "^6.2",
         "symfony/twig-bundle": "^6.2"
     },
