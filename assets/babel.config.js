@@ -6,4 +6,7 @@ module.exports = {
         }],
         ['@babel/preset-typescript', { allowDeclareFields: true }]
     ],
+    assumptions: {
+        superIsCallableConstructor: false,
+    },
 };
