@@ -21,6 +21,10 @@ jobs:
         symfony-version:
           - '6.2.*'
           - '6.3.*'
+          - '6.4.x-dev'
+        include:
+          - php-version: '8.2'
+            symfony-version: '7.0.x-dev'
 
     steps:
       - name: Checkout code
