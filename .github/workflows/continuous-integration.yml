@@ -21,14 +21,12 @@ jobs:
         symfony-version:
           - '6.2.*'
           - '6.3.*'
-          - '6.4.x-dev'
-        include:
-          - php-version: '8.2'
-            symfony-version: '7.0.x-dev'
+          - '6.4.*'
+          - '7.0.*'
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
@@ -51,4 +49,4 @@ jobs:
 
       - name: Upload to Codecov
         uses: codecov/codecov-action@v3
-        if: matrix.php-version == '8.2' && matrix.symfony-version == '6.3.*'
+        if: matrix.php-version == '8.2' && matrix.symfony-version == '6.4.*'
