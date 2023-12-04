@@ -8,9 +8,11 @@
         "controllers": {
             "slug": {
                 "main": "dist/controller.js",
-                "webpackMode": "eager",
                 "fetch": "eager",
-                "enabled": true
+                "enabled": true,
+                "autoimport": {
+                    "@leapt/slug-type-bundle/dist/style.css": true
+                }
             }
         },
         "importmap": {
