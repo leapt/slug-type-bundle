@@ -11,7 +11,7 @@
                 "fetch": "eager",
                 "enabled": true,
                 "autoimport": {
-                    "dist/style.css": true
+                    "@leapt/slug-type-bundle/dist/style.css": true
                 }
             }
         },
