@@ -1,3 +1,9 @@
+1.3.0
+-----
+
+* Allow Symfony 7
+* Drop support for Symfony < 6.4
+
 1.2.0
 -----
 

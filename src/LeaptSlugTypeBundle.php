@@ -32,11 +32,8 @@ class LeaptSlugTypeBundle extends AbstractBundle
             return false;
         }
 
-        // check that FrameworkBundle 6.3 or higher is installed
         $bundlesMetadata = $builder->getParameter('kernel.bundles_metadata');
-        if (!isset($bundlesMetadata['FrameworkBundle'])) {
-            return false;
-        }
+        \assert(\is_array($bundlesMetadata));
 
         return is_file($bundlesMetadata['FrameworkBundle']['path'] . '/Resources/config/asset_mapper.php');
     }

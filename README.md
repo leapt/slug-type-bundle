@@ -13,7 +13,7 @@ Leapt SlugType bundle makes a form field dynamically generate the slug based on 
 ## Requirements
 
 - PHP ^8.2
-- Symfony ^6.2
+- Symfony ^6.4 or ^7.0
 - Webpack Encore & Stimulus bridge already present in your project
 
 ## Installation
