@@ -8,9 +8,11 @@
         "controllers": {
             "slug": {
                 "main": "dist/controller.js",
-                "webpackMode": "eager",
                 "fetch": "eager",
-                "enabled": true
+                "enabled": true,
+                "autoimport": {
+                    "dist/style.css": true
+                }
             }
         },
         "importmap": {
