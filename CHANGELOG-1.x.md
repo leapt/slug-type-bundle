@@ -3,7 +3,7 @@
 
 * Allow Symfony 7
 * Drop support for Symfony < 6.4
-*  Add a default stylesheet to render readonly inputs with a gray background
+* Add a default stylesheet to render readonly inputs with a gray background
 
 1.2.0
 -----

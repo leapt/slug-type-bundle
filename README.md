@@ -95,6 +95,36 @@ $builder->add('slug', SlugType::class, [
 ]);
 ```
 
+## Customizing the design
+
+The bundle provides a default stylesheet in order to add a gray background to the readonly input.
+You can disable it to add your own design if you wish.
+
+In `assets/controllers.json`, disable the default stylesheet by switching the `@leapt/slug-type-bundle/dist/style.css`
+autoimport to `false`:
+
+```json
+{
+    "controllers": {
+        "@leapt/slug-type-bundle": {
+            "slug": {
+                "enabled": true,
+                "fetch": "eager",
+                "autoimport": {
+                    "@leapt/slug-type-bundle/dist/style.css": false
+                }
+            }
+        }
+    },
+    "entrypoints": []
+}
+```
+
+Note: you should put the value to false and not remove the line so that Symfony Flex won't try to add the line again
+in the future.
+
+Once done, the default stylesheet won’t be used anymore, and you can implement your own CSS on top of the input.
+
 ## Contributing
 
 Feel free to contribute, like sending [pull requests](https://github.com/leapt/slug-type-bundle/pulls) to add
