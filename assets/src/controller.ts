@@ -93,7 +93,7 @@ export default class extends Controller<HTMLDivElement> {
     }
 
     listenTarget(): void {
-        this.target.addEventListener('keyup', (): void => {
+        this.target.addEventListener('input', (): void => {
             if ('readonly' === this.field.getAttribute('readonly')) {
                 this.updateValue();
             }
