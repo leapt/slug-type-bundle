@@ -19,9 +19,9 @@
         "symfony/translation": "^6.4 || ^7.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.24.0",
-        "phpstan/phpstan": "^1.10.32",
-        "phpstan/phpstan-deprecation-rules": "^1.1.4",
+        "friendsofphp/php-cs-fixer": "^3.57.2",
+        "phpstan/phpstan": "^1.11.1",
+        "phpstan/phpstan-deprecation-rules": "^1.2.0",
         "phpunit/phpunit": "^10.3.2",
         "symfony/asset-mapper": "^6.4 || ^7.0",
         "symfony/framework-bundle": "^6.4 || ^7.0",
