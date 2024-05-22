@@ -1,3 +1,8 @@
+1.4.0
+-----
+
+* Allow trigger from a select field
+
 1.3.0
 -----
 
