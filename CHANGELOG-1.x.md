@@ -1,13 +1,9 @@
-1.5.0
------
-
-* Test against PHP 8.4 & 8.5
-* Allow Symfony 8
-
 1.4.0
 -----
 
 * Allow trigger from a select field
+* Test against PHP 8.4 & 8.5
+* Allow Symfony 8
 
 1.3.0
 -----
