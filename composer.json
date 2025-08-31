@@ -19,9 +19,9 @@
         "symfony/translation": "^6.4 || ^7.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.57.2",
-        "phpstan/phpstan": "^1.11.1",
-        "phpstan/phpstan-deprecation-rules": "^1.2.0",
+        "friendsofphp/php-cs-fixer": "^3.86.0",
+        "phpstan/phpstan": "^2.1.22",
+        "phpstan/phpstan-deprecation-rules": "^2.0.3",
         "phpunit/phpunit": "^11.1.3",
         "symfony/asset-mapper": "^6.4 || ^7.0",
         "symfony/framework-bundle": "^6.4 || ^7.0",
@@ -33,8 +33,8 @@
             "@phpstan",
             "@phpunit"
         ],
-        "cs:dry": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --diff --dry-run --no-interaction --ansi",
-        "cs:fix": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --ansi",
+        "cs:dry": "vendor/bin/php-cs-fixer fix --diff --dry-run --no-interaction --ansi",
+        "cs:fix": "vendor/bin/php-cs-fixer fix --ansi",
         "phpstan": "vendor/bin/phpstan analyse --ansi",
         "phpunit": "vendor/bin/phpunit --coverage-html=var/html-coverage --colors=auto"
     },
