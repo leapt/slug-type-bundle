@@ -9,7 +9,7 @@ on:
 jobs:
   phpunit:
     name: PHPUnit (PHP ${{ matrix.php-version }} - Symfony ${{ matrix.symfony-version }})
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     env:
       SYMFONY_REQUIRE: ${{ matrix.symfony-version }}
 
@@ -18,13 +18,14 @@ jobs:
         php-version:
           - '8.2'
           - '8.3'
+          - '8.4'
         symfony-version:
           - '6.4.*'
-          - '7.0.*'
+          - '7.3.*'
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 2
 
