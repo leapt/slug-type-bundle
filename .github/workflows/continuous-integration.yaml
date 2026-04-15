@@ -46,6 +46,10 @@ jobs:
           php-version: ${{ matrix.php-version }}
           tools: flex
 
+      - name: Configure Composer minimum-stability for dev versions
+        if: contains(matrix.symfony-version, 'dev')
+        run: composer config minimum-stability dev
+
       - name: Install Composer dependencies
         uses: ramsey/composer-install@v4
 
