@@ -1,3 +1,8 @@
+1.5.0
+-----
+
+* Allow Stimulus bundle v3
+
 1.4.0
 -----
 
