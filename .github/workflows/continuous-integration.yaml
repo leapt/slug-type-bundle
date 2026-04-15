@@ -23,16 +23,19 @@ jobs:
         symfony-version:
           - '6.4.*'
           - '7.3.*'
-          - '7.4.*@dev'
+          - '7.4.*'
         include:
           - php-version: '8.4'
-            symfony-version: '8.0.*@dev'
+            symfony-version: '8.0.*'
           - php-version: '8.5'
-            symfony-version: '8.0.*@dev'
+            symfony-version: '8.0.*'
+          - php-version: '8.5'
+            symfony-version: '8.1.*@dev'
+            continue-on-error: true
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 2
 
@@ -48,7 +51,7 @@ jobs:
         run: composer config minimum-stability dev
 
       - name: Install Composer dependencies
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@v4
 
       - name: Run PHPUnit
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
