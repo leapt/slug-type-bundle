@@ -1,2 +1,10 @@
 parameters:
-	ignoreErrors: []
+	ignoreErrors:
+		-
+			rawMessage: '''
+				Return type of method Leapt\SlugTypeBundle\Tests\LeaptSlugTypeTestingKernel::registerBundles() has typehint with deprecated interface Symfony\Component\HttpKernel\Bundle\BundleInterface:
+				since Symfony 8.1, use Symfony\Component\DependencyInjection\Kernel\BundleInterface instead
+			'''
+			identifier: return.deprecatedInterface
+			count: 1
+			path: tests/LeaptSlugTypeTestingKernel.php
