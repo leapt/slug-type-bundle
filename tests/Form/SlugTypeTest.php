@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 use Twig\Environment;
 
@@ -47,7 +48,7 @@ final class SlugTypeTest extends KernelTestCase
         self::assertSame(
             '<form name="form" method="post"><div id="form"><div><label for="form_name" class="required">Name</label><input type="text" id="form_name" name="form[name]" required="required"></div><div><label for="form_slug" class="required">Slug</label><div
         class="input-group"
-        data-controller="leapt--slug-type-bundle--slug" data-leapt--slug-type-bundle--slug-target-value="form_name" data-leapt--slug-type-bundle--slug-alert-message-value="If you change the slug, you can break links on other pages." data-leapt--slug-type-bundle--slug-locked-icon-value="&amp;#128274;" data-leapt--slug-type-bundle--slug-unlocked-icon-value="&amp;#128275;"
+        data-controller="leapt--slug-type-bundle--slug" data-leapt--slug-type-bundle--slug-targets-value="[&quot;form_name&quot;]" data-leapt--slug-type-bundle--slug-alert-message-value="If you change the slug, you can break links on other pages." data-leapt--slug-type-bundle--slug-locked-icon-value="&amp;#128274;" data-leapt--slug-type-bundle--slug-unlocked-icon-value="&amp;#128275;"
    >
         <input type="text" id="form_slug" name="form[slug]" required="required">
         <button class="btn btn-outline-secondary" type="button" data-leapt--slug-type-bundle--slug-target="button">
@@ -91,6 +92,31 @@ final class SlugTypeTest extends KernelTestCase
             'fa-lock-open',
             $rendered,
         );
+    }
+
+    public function testRenderFormWithMultipleTargets(): void
+    {
+        $form = $this->formFactory->createBuilder()
+            ->add('firstName', TextType::class)
+            ->add('lastName', TextType::class)
+            ->add('slug', SlugType::class, ['target' => ['firstName', 'lastName']])
+            ->getForm();
+
+        $rendered = $this->twig->render('form.html.twig', ['form' => $form->createView()]);
+
+        self::assertStringContainsString(
+            'data-leapt--slug-type-bundle--slug-targets-value="[&quot;form_firstName&quot;,&quot;form_lastName&quot;]"',
+            $rendered,
+        );
+    }
+
+    public function testEmptyTargetsThrowsException(): void
+    {
+        self::expectException(InvalidOptionsException::class);
+        $this->formFactory->createBuilder()
+            ->add('name', TextType::class)
+            ->add('slug', SlugType::class, ['target' => []])
+            ->getForm();
     }
 
     public function testMissingTargetThrowsException(): void

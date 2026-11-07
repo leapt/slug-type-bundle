@@ -21,7 +21,8 @@ final class SlugType extends AbstractType
     {
         $resolver
             ->setRequired(['target'])
-            ->setAllowedTypes('target', ['string'])
+            ->setAllowedTypes('target', ['string', 'string[]'])
+            ->setAllowedValues('target', static fn(string|array $target): bool => [] !== $target)
             ->setDefault('button_class', null)
             ->setAllowedTypes('button_class', ['null', 'string'])
             ->setDefault('locked_icon', '&#128274;')
@@ -34,6 +35,7 @@ final class SlugType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['target'] = $options['target'];
+        $view->vars['targets'] = (array) $options['target'];
         $view->vars['button_class'] = $options['button_class'];
         $view->vars['locked_icon'] = $options['locked_icon'];
         $view->vars['unlocked_icon'] = $options['unlocked_icon'];

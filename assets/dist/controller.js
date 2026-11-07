@@ -1,12 +1,12 @@
 'use strict';
 
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
-function _possibleConstructorReturn(self, call) { if (call && (typeof call === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _possibleConstructorReturn(t, e) { if (e && ("object" == typeof e || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
+function _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
+function _inheritsLoose(t, o) { t.prototype = Object.create(o.prototype), t.prototype.constructor = t, _setPrototypeOf(t, o); }
+function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
 import { Controller } from '@hotwired/stimulus';
 import slugify from 'slugify';
 slugify.extend({
@@ -63,7 +63,7 @@ var _default = /*#__PURE__*/function (_Controller) {
     _this = _callSuper(this, _default, [].concat(args));
     _this.locked = true;
     _this.field = void 0;
-    _this.target = void 0;
+    _this.targetElements = void 0;
     _this.currentSlug = void 0;
     return _this;
   }
@@ -72,7 +72,7 @@ var _default = /*#__PURE__*/function (_Controller) {
   _proto.connect = function connect() {
     this.field = this.element.querySelector('input');
     this.field.setAttribute('readonly', 'readonly');
-    this.setTargetElement();
+    this.setTargetElements();
     if ('' === this.field.value) {
       this.currentSlug = '';
       this.updateValue();
@@ -81,27 +81,40 @@ var _default = /*#__PURE__*/function (_Controller) {
       this.currentSlug = this.field.value;
     }
     this.appendLockButton();
-  };
+  }
+
+  /**
+   * Slugify each target value, and join the non-empty ones using a dash
+   */;
   _proto.updateValue = function updateValue() {
-    this.field.value = slugify(this.target.value, {
-      remove: /[^A-Za-z0-9\s-]/g,
-      lower: true,
-      strict: true
-    });
+    this.field.value = this.targetElements.map(function (target) {
+      return slugify(target.value, {
+        remove: /[^A-Za-z0-9\s-]/g,
+        lower: true,
+        strict: true
+      });
+    }).filter(function (value) {
+      return '' !== value;
+    }).join('-');
   };
   _proto.listenTarget = function listenTarget() {
     var _this2 = this;
-    this.target.addEventListener('input', function () {
-      if ('readonly' === _this2.field.getAttribute('readonly')) {
-        _this2.updateValue();
-      }
+    this.targetElements.forEach(function (target) {
+      target.addEventListener('input', function () {
+        if ('readonly' === _this2.field.getAttribute('readonly')) {
+          _this2.updateValue();
+        }
+      });
     });
   };
-  _proto.setTargetElement = function setTargetElement() {
-    this.target = document.getElementById(this.targetValue);
-    if (null === this.target) {
-      throw "Wrong target specified for slug widget (\"" + this.field.dataset.target + "\").";
-    }
+  _proto.setTargetElements = function setTargetElements() {
+    this.targetElements = this.targetsValue.map(function (targetId) {
+      var target = document.getElementById(targetId);
+      if (null === target) {
+        throw "Wrong target specified for slug widget (\"" + targetId + "\").";
+      }
+      return target;
+    });
   }
 
   /**
@@ -147,7 +160,7 @@ var _default = /*#__PURE__*/function (_Controller) {
   return _default;
 }(Controller);
 _default.values = {
-  target: String,
+  targets: Array,
   alertMessage: String,
   lockedIcon: String,
   unlockedIcon: String
