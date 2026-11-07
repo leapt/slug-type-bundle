@@ -74,6 +74,19 @@ final class CenterType extends AbstractType
 }
 ```
 
+The `target` option also accepts an array of fields. In this case, each field value is slugified, and the results are
+joined using a dash (empty values are skipped):
+
+```php
+$builder
+    ->add('firstName', TextType::class)
+    ->add('lastName', TextType::class)
+    ->add('slug', SlugType::class, [
+        'target' => ['firstName', 'lastName'], // "John" & "Doe" will generate "john-doe"
+    ])
+;
+```
+
 By default, for Bootstrap 4 & 5 themes, a `btn-secondary` class is applied to the lock button. You can change it
 by using the `button_class` option for any form theme:
 

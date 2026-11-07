@@ -50,12 +50,12 @@ slugify.extend({
 
 export default class extends Controller<HTMLDivElement> {
     static values = {
-        target: String,
+        targets: Array,
         alertMessage: String,
         lockedIcon: String,
         unlockedIcon: String,
     };
-    declare readonly targetValue: string;
+    declare readonly targetsValue: string[];
     declare readonly alertMessageValue: string;
     declare readonly lockedIconValue: string;
     declare readonly unlockedIconValue: string;
@@ -65,13 +65,13 @@ export default class extends Controller<HTMLDivElement> {
 
     locked: boolean = true;
     field: HTMLInputElement;
-    target: HTMLInputElement;
+    targetElements: HTMLInputElement[];
     currentSlug: string;
 
     connect() {
         this.field = this.element.querySelector('input');
         this.field.setAttribute('readonly', 'readonly');
-        this.setTargetElement();
+        this.setTargetElements();
 
         if ('' === this.field.value) {
             this.currentSlug = '';
@@ -84,27 +84,39 @@ export default class extends Controller<HTMLDivElement> {
         this.appendLockButton();
     }
 
+    /**
+     * Slugify each target value, and join the non-empty ones using a dash
+     */
     updateValue(): void {
-        this.field.value = slugify(this.target.value, {
-            remove: /[^A-Za-z0-9\s-]/g,
-            lower: true,
-            strict: true,
-        });
+        this.field.value = this.targetElements
+            .map((target: HTMLInputElement): string => slugify(target.value, {
+                remove: /[^A-Za-z0-9\s-]/g,
+                lower: true,
+                strict: true,
+            }))
+            .filter((value: string): boolean => '' !== value)
+            .join('-');
     }
 
     listenTarget(): void {
-        this.target.addEventListener('input', (): void => {
-            if ('readonly' === this.field.getAttribute('readonly')) {
-                this.updateValue();
-            }
+        this.targetElements.forEach((target: HTMLInputElement): void => {
+            target.addEventListener('input', (): void => {
+                if ('readonly' === this.field.getAttribute('readonly')) {
+                    this.updateValue();
+                }
+            });
         });
     }
 
-    setTargetElement(): void {
-        this.target = document.getElementById(this.targetValue) as HTMLInputElement;
-        if (null === this.target) {
-            throw `Wrong target specified for slug widget ("${this.field.dataset.target}").`;
-        }
+    setTargetElements(): void {
+        this.targetElements = this.targetsValue.map((targetId: string): HTMLInputElement => {
+            const target = document.getElementById(targetId) as HTMLInputElement | null;
+            if (null === target) {
+                throw `Wrong target specified for slug widget ("${targetId}").`;
+            }
+
+            return target;
+        });
     }
 
     /**

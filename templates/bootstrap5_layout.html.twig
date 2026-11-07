@@ -1,8 +1,9 @@
 {% block leapt_slug_widget -%}
+    {%- set target_ids = targets|map(t => form.parent.children[t].vars.id) -%}
     <div
         class="input-group"
         {{ stimulus_controller('leapt/slug-type-bundle/slug', {
-            target: form.parent.children[target].vars.id,
+            targets: target_ids,
             alertMessage: 'alert_message'|trans({}, 'LeaptSlugType'),
             lockedIcon: locked_icon,
             unlockedIcon: unlocked_icon,

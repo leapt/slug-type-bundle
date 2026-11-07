@@ -1,3 +1,10 @@
+1.6.0
+-----
+
+* Allow multiple targets, whose values are joined using a dash
+* The Stimulus controller `target` value has been replaced by `targets` (array of field IDs); update your form theme
+  if you overrode the `leapt_slug_widget` block
+
 1.5.0
 -----
 
